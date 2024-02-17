@@ -1,4 +1,36 @@
-<html>
-  <head></head>
-  <body>Gaba a </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abstract Gaba a</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282828;
+    overflow: hidden;
+  }
+  .text {
+    font-size: 5em;
+    font-weight: bold;
+    color: #F0E68C;
+    animation: move 5s infinite alternate;
+    text-shadow: 0 0 20px #FFF, 0 0 30px #FFF, 0 0 40px #FFD700, 0 0 70px #FFD700, 0 0 80px #FFD700, 0 0 100px #FFD700, 0 0 150px #FFD700;
+  }
+  @keyframes move {
+    0% { transform: translateX(0) rotate(0); }
+    25% { transform: translateX(-25px) rotate(-5deg); }
+    50% { transform: translateX(25px) rotate(5deg); }
+    75% { transform: translateX(-25px) rotate(-5deg); }
+    100% { transform: translateX(0) rotate(0); }
+  }
+</style>
+</head>
+<body>
+<div class="text">Gaba a</div>
+</body>
 </html>
