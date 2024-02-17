@@ -4,30 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
+  .draggable {
+    font-size: 20px; /* Basic font size */
+    font-family: Arial, sans-serif; /* Basic font */
+    animation: rotate 4s linear infinite;
+    position: absolute;
+    cursor: move;
   }
   @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .text {
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-    animation: rotate 4s linear infinite;
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 </style>
 </head>
 <body>
-<div class="text">Gaba a</div>
+
+<div id="draggable" class="draggable">Gaba a</div>
+
+<script>
+  // Make the DIV element draggable:
+  dragElement(document.getElementById("draggable"));
+
+  function dragElement(elmnt) {
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    elmnt.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // Get the mouse cursor position at startup:
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      // Call a function whenever the cursor moves:
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      // Calculate the new cursor position:
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      // Set the element's new position:
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+      // Stop moving when mouse button is released:
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+  }
+</script>
+
 </body>
 </html>
